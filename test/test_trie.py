@@ -1,6 +1,6 @@
 """
 To test the Trie data structure and its methods
-""" 
+"""
 from algorithm.trie import TrieNode, Trie
 
 class TestTrieNode:
@@ -9,6 +9,9 @@ class TestTrieNode:
     """
     @staticmethod
     def test_trienode_basics():
+        """
+        Test whether node is generated as required
+        """
         node = TrieNode()
         assert node.is_end_of_the_word is False
         assert None in node.children
@@ -22,16 +25,16 @@ class TestTrieDS:
         """
         Test functionalities of Trie data structure
         """
-        assert 0 == Trie._char_to_index('a')
-        assert 3 == Trie._char_to_index('d')
-        assert 25 == Trie._char_to_index('z')
+        assert Trie.char_to_index('a') == 0
+        assert Trie.char_to_index('d') == 3
+        assert Trie.char_to_index('z') == 25
 
     @staticmethod
     def test_trie_get_new_node():
         """
         Test functionalities of Trie data structure
         """
-        node = Trie._get_new_node()
+        node = Trie.get_new_node()
         assert node.is_end_of_the_word is False
         assert None in node.children
 
@@ -43,8 +46,8 @@ class TestTrieDS:
         trie_ds = Trie()
         insert_element = "a"
         trie_ds.insert(insert_element)
-        assert trie_ds.root.children[Trie._char_to_index(insert_element)] is not None
-    
+        assert trie_ds.root.children[Trie.char_to_index(insert_element)] is not None
+
     @staticmethod
     def test_trie_insert2():
         """
@@ -53,8 +56,8 @@ class TestTrieDS:
         trie_ds = Trie()
         insert_element = "z"
         trie_ds.insert(insert_element)
-        assert trie_ds.root.children[Trie._char_to_index(insert_element)] is not None
-    
+        assert trie_ds.root.children[Trie.char_to_index(insert_element)] is not None
+
     @staticmethod
     def test_trie_search1():
         """
@@ -90,7 +93,7 @@ class TestTrieDS:
         """
         trie_ds = Trie()
         assert trie_ds.search("jfdhjekjebt") is False
-    
+
     @staticmethod
     def test_trie_searh_multiword1():
         """
@@ -138,4 +141,3 @@ class TestTrieDS:
         trie_ds.insert(insert_element1)
         trie_ds.insert(insert_element2)
         assert trie_ds.search_multi_words(insert_element1 + insert_element2) is True
-

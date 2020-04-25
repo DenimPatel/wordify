@@ -22,14 +22,14 @@ class Trie:
         search_multi_words
     """
     def __init__(self):
-        self.root = self._get_new_node()
+        self.root = self.get_new_node()
 
     @staticmethod
-    def _char_to_index(character):
+    def char_to_index(character):
         return ord(character)-ord('a')
 
     @staticmethod
-    def _get_new_node():
+    def get_new_node():
         return TrieNode()
 
     def insert(self, key):
@@ -39,9 +39,9 @@ class Trie:
         current_node = self.root
         length = len(key)
         for level in range(length):
-            index = self._char_to_index(key[level])
+            index = self.char_to_index(key[level])
             if not current_node.children[index]:
-                current_node.children[index] = self._get_new_node()
+                current_node.children[index] = self.get_new_node()
             current_node = current_node.children[index]
         current_node.is_end_of_the_word = True
 
@@ -53,7 +53,7 @@ class Trie:
         current_node = self.root
         length = len(key)
         for level in range(length):
-            index = self._char_to_index(key[level])
+            index = self.char_to_index(key[level])
             if not current_node.children[index]:
                 return False
             current_node = current_node.children[index]
@@ -69,7 +69,7 @@ class Trie:
         length = len(key)
         temp_ans = False
         for level in range(length):
-            index = self._char_to_index(key[level])
+            index = self.char_to_index(key[level])
             if not current_node.children[index]:
                 return False
             current_node = current_node.children[index]
