@@ -1,7 +1,9 @@
 """
 test module for basic utility functions
 """
-from utils.utils import remove_non_alpha_numeric, string_to_number
+from utils.utils import remove_non_alpha_numeric, \
+    string_to_number, \
+    find_number_to_character_mapping
  
  
 class TestRemoveNonAlphaNumeric:
@@ -77,3 +79,17 @@ class TestStringToNumber:
        return_val = string_to_number("WXYZ")
        assert return_val == "9999"
  
+class TestNumberToCharacterMapping:
+    """
+    Test correspondence from number to characters
+    """
+    @staticmethod
+    def test_num_to_chars_mapping():
+        assert find_number_to_character_mapping(2) == ["A", "B", "C"]
+        assert find_number_to_character_mapping(3) == ["D", "E", "F"]
+        assert find_number_to_character_mapping(4) == ["G", "H", "I"]
+        assert find_number_to_character_mapping(5) == ["J", "K", "L"]
+        assert find_number_to_character_mapping(6) == ["M", "N", "O"]
+        assert find_number_to_character_mapping(7) == ["P", "Q", "R", "S"]
+        assert find_number_to_character_mapping(8) == ["T", "U", "V"]
+        assert find_number_to_character_mapping(9) == ["W", "X", "Y", "Z"]
