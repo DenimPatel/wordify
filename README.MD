@@ -1,18 +1,60 @@
-Implementation of Wordify 
+
+
+# Wordify Phone Number
+#### Wordify is a Python package to wordify Phone numbers.
 
 Main 3 functionalities are:
-1.number_to_words()
-    takes string representing US phone number and returns wordified string
 
-2.words_to_numbers()
-    takes wordified string and returns phone number corresponding to it
-
-3.all_wordifications()
-        takes string representing US phone number and returns list of all wordified sting
+- number_to_words()
+    
+      takes a string representing phone number and returns wordified string.
 
 
-Todo: 
-add approach,
-functionalities,
-examples,
-how to use 
+- words_to_numbers()
+   
+      takes wordified string and returns phone number.
+
+- all_wordifications()
+  
+      takes a string representing phone number and returns a list of all wordified numbers.
+
+## Test
+```python
+pytest
+```
+
+## Usage
+
+```python
+import Wordifier
+
+wordifier = Wordifier()
+wordifier.add_words_to_dictionary("data/google_10000_medium.txt")
+query_srting = "9878SCHOOL"
+response = wordifier.words_to_number(query_srting) # returns phone number 
+response = wordifier.number_to_words(number) # returns wordified number
+response = wordifier.all_wordifications(number) # returns list of woridifed number
+```
+#### Output:
+```python
+Words to number:  Query:  9878SCHOOL Response:  9878724665 
+
+Number to words:  9878724665 Query:  9878724665 Response:  9878SCHOOL 
+
+All wordification for Number:  9878724665
+['98STRAIN65', '987TRAIN65', '9878SCHOOL'] 
+```
+
+## Assumptions:
+- The number contains 9 to 12 digit
+- The number can't have 0 and 1 digit except for the initial two positions
+- Initial two numbers are not used for wordification
+- Dictionary may contain duplicate words
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
