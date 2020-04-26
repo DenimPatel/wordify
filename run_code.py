@@ -16,11 +16,11 @@ def run_functionalities():
     # Functionality 1: Words to Number
     query_srting = "9878SCHOOL"
     number = wordifier.words_to_number(query_srting)
-    print("\nWords to number: ", "Query: ", query_srting, "Response: ", number, "\n")
+    print("\nWords to number: Query: ", query_srting, "Response: ", number, "\n")
 
     #Functionaliry 3: Number to Words
     response = wordifier.number_to_words(number)
-    print("Number to words: ", number, "Query: ", number, "Response: ", response, "\n")
+    print("Number to words: Query: ", number, "Response: ", response, "\n")
 
     # Functionality 2: All wordification
     response = wordifier.all_wordifications(number)
