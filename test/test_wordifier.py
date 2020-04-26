@@ -1,5 +1,5 @@
 """
-Test the wordifier methods 
+Test the wordifier methods
 """
 from algorithm.wordifier import Wordifier
 
@@ -16,7 +16,6 @@ class TestWordifier:
         assert wordifier.words_to_number("HELLO") == "43556"
         assert wordifier.words_to_number("hello") == "43556"
         assert wordifier.words_to_number("painterhothot") == "7246837468468"
-        
 
     @staticmethod
     def test_wordifier_words_to_numbers_2():
@@ -49,7 +48,7 @@ class TestWordifier:
         response = wordifier.all_wordifications(query)
         assert len(response) >= 1
         assert "18PAINTPAINT" in response
-    
+
     @staticmethod
     def test_wordifier_all_wordification2():
         """

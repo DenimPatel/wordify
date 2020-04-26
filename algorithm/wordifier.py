@@ -80,5 +80,3 @@ class Wordifier:
             ans = curr_ans
             curr_ans = []
         return all_combinations
-    
-
