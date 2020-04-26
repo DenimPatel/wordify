@@ -30,8 +30,9 @@ import Wordifier
 
 wordifier = Wordifier()
 wordifier.add_words_to_dictionary("data/google_10000_medium.txt")
-query_srting = "9878SCHOOL"
-response = wordifier.words_to_number(query_srting) # returns phone number 
+number = "9878724665"
+wordified_number = "9878SCHOOL"
+response = wordifier.words_to_number(wordified_number) # returns phone number 
 response = wordifier.number_to_words(number) # returns wordified number
 response = wordifier.all_wordifications(number) # returns list of woridifed number
 ```
