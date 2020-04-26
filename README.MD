@@ -37,14 +37,13 @@ response = wordifier.all_wordifications(number) # returns list of woridifed numb
 ```
 #### Output:
 ```python
-Words to number:  Query:  9878SCHOOL Response:  9878724665 
+Words to number: Query:  9878SCHOOL Response:  9878724665 
 
-Number to words:  9878724665 Query:  9878724665 Response:  9878SCHOOL 
+Number to words: Query:  9878724665 Response:  9878SCHOOL 
 
 All wordification for Number:  9878724665
 ['98STRAIN65', '987TRAIN65', '9878SCHOOL'] 
 ```
-
 ## Assumptions:
 - The number contains 9 to 12 digit
 - The number can't have 0 and 1 digit except for the initial two positions
