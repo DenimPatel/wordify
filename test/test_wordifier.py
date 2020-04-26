@@ -47,7 +47,7 @@ class TestWordifier:
     @staticmethod
     def test_wordifier_all_wordification2(ready_wordifier):
         """
-        Test method: all wordification see known answer is present
+        Test method: all wordification: check known answer is present
         """
         query = ready_wordifier.words_to_number("38SOFTWARE")
         response = ready_wordifier.all_wordifications(query)
@@ -57,7 +57,7 @@ class TestWordifier:
     @staticmethod
     def test_wordifier_all_wordification3(ready_wordifier):
         """
-        Test method: all wordification see known answer is present
+        Test method: all wordification: check known answer is present
         """
         query = ready_wordifier.words_to_number("99-PRODUCTS")
         response = ready_wordifier.all_wordifications(query)
@@ -67,7 +67,7 @@ class TestWordifier:
     @staticmethod
     def test_wordifier_all_wordification3a(ready_wordifier):
         """
-        Test method: all wordification see known answer is present
+        Test method: all wordification: check known answer is present
         """
         query = ready_wordifier.words_to_number("983SCHOOL9")
         response = ready_wordifier.all_wordifications(query)
@@ -77,10 +77,20 @@ class TestWordifier:
     @staticmethod
     def test_wordifier_all_wordification4(ready_wordifier):
         """
-        Test method: all wordification see all answer has correct phone number
+        Test method: all wordification: check all answer has correct phone number
         """
         query = ready_wordifier.words_to_number("18PAINTSAINT")
         response = ready_wordifier.all_wordifications(query)
         assert len(response) >= 1
         for each in response:
             assert ready_wordifier.words_to_number(each) == query
+
+    @staticmethod
+    def test_wordifier_number_to_words(ready_wordifier):
+        """
+        Test method: Number to words: Check wordification is correct
+        """
+        query = ready_wordifier.words_to_number("987SPECIAL")
+        response = ready_wordifier.number_to_words(query)
+        assert len(response) >= 1
+        ready_wordifier.words_to_number(response) == query

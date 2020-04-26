@@ -41,11 +41,8 @@ def find_number_to_character_mapping(number):
     Return correspondence from number to characters
     ex: "4" -> ["G", "H", "I"]
     Input should be valid query i.e. input can't be 0 or 1
+    TO DO: Should shift to txt file??
     """
-    # number = 
-    # if not number.isdigit():
-    #     return ""
-
     mapping = {}
     mapping["2"] = ["A", "B", "C"]
     mapping["3"] = ["D", "E", "F"]

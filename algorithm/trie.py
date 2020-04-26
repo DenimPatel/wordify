@@ -65,21 +65,12 @@ class Trie:
         Search whether all words in input string is present or not
         Return bool
         """
-        if "SCHOOL" == key:
-            print("key", key)
-        if "DRAIN" == key:
-            print("key", key)
-        
         key = key.lower()
         current_node = self.root
         length = len(key)
         temp_ans = False
         for level in range(length):
-            # if(key == "SCHOOL"):
-            #     print("level = ", level, " key = ", key[level])
             index = self.char_to_index(key[level])
-            # if(key == "SCHOOL"):
-            #     print(index)
             if not current_node.children[index]:
                 return False
             current_node = current_node.children[index]

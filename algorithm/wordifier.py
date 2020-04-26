@@ -40,6 +40,25 @@ class Wordifier:
         """
         return string_to_number(query_string)
 
+    def number_to_words(self, number):
+        """
+        Return word with biggest match
+        """
+        query = remove_non_alpha_numeric(number)
+        result = ""
+        last_word = ""
+        for i in range(2, len(query)):
+            query_to_combinations = query[i:]
+            all_combinations = self.find_all_combinations(query_to_combinations)
+            words = self.check_words_against_dictionary(all_combinations)
+            for word in words:
+                ans = query[:i] + word + query[i+len(word):]
+                if len(word) >= len(last_word):
+                    result = ans
+                    last_word = word
+        return result
+
+
     def add_words_to_dictionary(self, filename):
         """
         Add words from file in the dictionary
