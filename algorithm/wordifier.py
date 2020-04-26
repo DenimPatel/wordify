@@ -5,7 +5,8 @@ Module implements methods such as:
     convert wordified number
 """
 from algorithm.dictionary import Dictionary
-from utils.utils import find_number_to_character_mapping, string_to_number
+from utils.utils import find_number_to_character_mapping, string_to_number, \
+     remove_non_alpha_numeric
 
 class Wordifier:
     """
@@ -21,15 +22,16 @@ class Wordifier:
         """
         Returns All wordification
         """
+        query = remove_non_alpha_numeric(number)
         result = []
-        for i in range(2, len(number)):
-            query_to_combinations = number[i:]
+        for i in range(2, len(query)):
+            query_to_combinations = query[i:]
             all_combinations = self.find_all_combinations(query_to_combinations)
             words = self.check_words_against_dictionary(all_combinations)
             for word in words:
-                ans = number[:i] + word + number[i+len(word):]
+                ans = query[:i] + word + query[i+len(word):]
                 result.append(ans)
-            return result
+        return result
 
     @staticmethod
     def words_to_number(query_string):
@@ -68,7 +70,7 @@ class Wordifier:
         From the query number, find all the combinations of words possible
         """
         all_combinations = []
-        ans = find_number_to_character_mapping(int(query_number[0]))
+        ans = find_number_to_character_mapping(query_number[0])
         curr_ans = []
         for iterator in range(1, len(query_number)):
             num = query_number[iterator]

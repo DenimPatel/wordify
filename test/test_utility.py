@@ -60,8 +60,8 @@ class TestStringToNumber:
        """
        test case:
        """
-       return_val = string_to_number("ZZAA")
-       assert return_val == "9922"
+       return_val = string_to_number("ZZ5AA")
+       assert return_val == "99522"
  
    @staticmethod
    def test_string_to_number_4():
@@ -76,7 +76,7 @@ class TestStringToNumber:
        """
        test case:
        """
-       return_val = string_to_number("WXYZ")
+       return_val = string_to_number("9XYZ")
        assert return_val == "9999"
  
 class TestNumberToCharacterMapping:
@@ -85,11 +85,11 @@ class TestNumberToCharacterMapping:
     """
     @staticmethod
     def test_num_to_chars_mapping():
-        assert find_number_to_character_mapping(2) == ["A", "B", "C"]
-        assert find_number_to_character_mapping(3) == ["D", "E", "F"]
-        assert find_number_to_character_mapping(4) == ["G", "H", "I"]
-        assert find_number_to_character_mapping(5) == ["J", "K", "L"]
-        assert find_number_to_character_mapping(6) == ["M", "N", "O"]
-        assert find_number_to_character_mapping(7) == ["P", "Q", "R", "S"]
-        assert find_number_to_character_mapping(8) == ["T", "U", "V"]
-        assert find_number_to_character_mapping(9) == ["W", "X", "Y", "Z"]
+        assert find_number_to_character_mapping("2") == ["A", "B", "C"]
+        assert find_number_to_character_mapping("3") == ["D", "E", "F"]
+        assert find_number_to_character_mapping("4") == ["G", "H", "I"]
+        assert find_number_to_character_mapping("5") == ["J", "K", "L"]
+        assert find_number_to_character_mapping("6") == ["M", "N", "O"]
+        assert find_number_to_character_mapping("7") == ["P", "Q", "R", "S"]
+        assert find_number_to_character_mapping("8") == ["T", "U", "V"]
+        assert find_number_to_character_mapping("9") == ["W", "X", "Y", "Z"]
