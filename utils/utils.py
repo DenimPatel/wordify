@@ -31,7 +31,7 @@ def string_to_number(text):
     ans = ""
     for char in text:
         if char.isalpha():
-            ans += mapping[char]
+            ans += mapping[char.upper()]
         else:
             ans += char
     return ans
@@ -51,4 +51,4 @@ def find_number_to_character_mapping(number):
     mapping[7] = ["P", "Q", "R", "S"]
     mapping[8] = ["T", "U", "V"]
     mapping[9] = ["W", "X", "Y", "Z"]
-    return mapping[number]
+    return mapping[int(number)]

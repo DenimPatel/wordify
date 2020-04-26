@@ -44,7 +44,7 @@ class TestStringToNumber:
        """
        test case:
        """
-       return_val = string_to_number("CDZZ")
+       return_val = string_to_number("CDzZ")
        assert return_val == "2399"
  
    @staticmethod
@@ -52,8 +52,8 @@ class TestStringToNumber:
        """
        test case:
        """
-       return_val = string_to_number("AAZZ")
-       assert return_val == "2299"
+       return_val = string_to_number("AAazZZ")
+       assert return_val == "222999"
  
    @staticmethod
    def test_string_to_number_3():
