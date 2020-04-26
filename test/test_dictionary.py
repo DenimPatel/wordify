@@ -22,7 +22,7 @@ class TestDictionary:
     @staticmethod
     def test_dictionary_after_one_addition():
         """
-        Test dictionary status after adding one word 
+        Test dictionary status after adding one word
         """
         dictionary_obj = Dictionary()
         add_word = "az"
@@ -34,7 +34,7 @@ class TestDictionary:
     @staticmethod
     def test_dictionary_after_multi_addition():
         """
-        Test dictionary status after adding one word 
+        Test dictionary status after adding one word
         """
         dictionary_obj = Dictionary()
         add_word1 = "az"
@@ -48,7 +48,7 @@ class TestDictionary:
         assert dictionary_obj.search(add_word3) is True
         assert dictionary_obj.search("random") is False
         assert len(dictionary_obj) == 3
-        assert dictionary_obj.search_multi_words(add_word1 + add_word3 ) is True
+        assert dictionary_obj.search_multi_words(add_word1 + add_word3) is True
 
     @staticmethod
     def test_dictionary_text_read():
@@ -57,5 +57,6 @@ class TestDictionary:
         """
         dictionary_obj = Dictionary()
         dictionary_obj.add_to_dictionary_from_txt("data/google_10000_medium.txt")
-        assert len(dictionary_obj) is not 0
-        # TO DO: Add more test cases 
+        assert len(dictionary_obj) != 0
+# TO DO: Add more test cases
+ 

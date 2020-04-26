@@ -1,8 +1,8 @@
 """
-Module implements methods such as:
-    wordify number
-    all possible wordification
-    convert wordified number
+Module provides Wordifier with main functionality:
+    wordify number a given phone number
+    all possible wordification of given phone number
+    convert wordified number to phone number
 """
 from algorithm.dictionary import Dictionary
 from utils.utils import find_number_to_character_mapping, string_to_number, \
@@ -17,12 +17,19 @@ class Wordifier:
     """
     def __init__(self):
         self.dictionary = Dictionary()
+    
+    def _is_valid_query(self, number_query):
+        number_query = number_query[2:]
+        if "0" in number_query or "1" in number_query:
+            raise ValueError
+        return True
 
     def all_wordifications(self, number):
         """
         Returns All wordification
         """
         query = remove_non_alpha_numeric(number)
+        assert self._is_valid_query(query)
         result = []
         for i in range(2, len(query)):
             query_to_combinations = query[i:]
@@ -47,6 +54,7 @@ class Wordifier:
         query = remove_non_alpha_numeric(number)
         result = ""
         last_word = ""
+        assert self._is_valid_query(query)
         for i in range(2, len(query)):
             query_to_combinations = query[i:]
             all_combinations = self.find_all_combinations(query_to_combinations)
@@ -65,7 +73,7 @@ class Wordifier:
         """
         self.dictionary.add_to_dictionary_from_txt(filename)
 
-    def add_single_word_to_directory(self, word):
+    def add_single_word_to_dictionary(self, word):
         """
         Add single word in the dictionary
         """

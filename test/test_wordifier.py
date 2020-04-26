@@ -73,7 +73,7 @@ class TestWordifier:
         response = ready_wordifier.all_wordifications(query)
         assert len(response) >= 1
         assert "983SCHOOL9" in response
-    
+
     @staticmethod
     def test_wordifier_all_wordification4(ready_wordifier):
         """
@@ -93,4 +93,22 @@ class TestWordifier:
         query = ready_wordifier.words_to_number("987SPECIAL")
         response = ready_wordifier.number_to_words(query)
         assert len(response) >= 1
-        ready_wordifier.words_to_number(response) == query
+        assert ready_wordifier.words_to_number(response) == query
+
+    @staticmethod
+    def test_wordifier_number_to_words_no_solution(ready_wordifier):
+        """
+        Test method: Number to words: Check invalid input
+        """
+        with pytest.raises(ValueError):
+            query = "803-308-9336"
+            ready_wordifier.number_to_words(query)
+
+    @staticmethod
+    def test_wordifier_all_wordification_no_solution(ready_wordifier):
+        """
+        Test method: Number to words: Check invalid input
+        """
+        with pytest.raises(ValueError):
+            query = "803-308-9336"
+            ready_wordifier.all_wordifications(query)

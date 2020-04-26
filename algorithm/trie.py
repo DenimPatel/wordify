@@ -26,10 +26,19 @@ class Trie:
 
     @staticmethod
     def char_to_index(character):
+        """
+        Find index based on character value
+        Linear mapping:
+            a -> 0
+            z -> 25
+        """
         return ord(character)-ord('a')
 
     @staticmethod
     def get_new_node():
+        """
+        Generate new Trie Node and initialize
+        """
         return TrieNode()
 
     def insert(self, key):

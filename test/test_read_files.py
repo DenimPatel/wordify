@@ -1,13 +1,13 @@
 """
 Testing module for data loading functions
 """
+import pytest
 from utils.utils import read_string_to_number_mapping
 
 class TestReadStringToNumber:
     """
     Test to check mapping from character to number
     """
-
     @staticmethod
     def test_read_string():
         """
@@ -24,3 +24,21 @@ class TestReadStringToNumber:
         assert mapping["T"] == '8' and mapping["U"] == '8' and mapping["V"] == '8'
         assert mapping["W"] == '9' and mapping["X"] == '9' and mapping["Y"] == '9' \
             and mapping["Z"] == '9'
+
+    @staticmethod
+    def test_read_string_invalid():
+        """
+        Test: read string to number: invalid input: numeric
+        """
+        mapping = read_string_to_number_mapping()
+        with pytest.raises(KeyError):
+            assert mapping["3"]
+
+    @staticmethod
+    def test_read_string_invalid2():
+        """
+        Test: read string to number: invalid input: symbol
+        """
+        mapping = read_string_to_number_mapping()
+        with pytest.raises(KeyError):
+            assert mapping["-"]
