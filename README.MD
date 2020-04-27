@@ -26,7 +26,7 @@ pytest
 ## Usage
 
 ```python
-import Wordifier
+from  algorithm.wordifier import Wordifier
 
 wordifier = Wordifier()
 wordifier.add_words_to_dictionary("data/google_10000_medium.txt")
