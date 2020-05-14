@@ -9,7 +9,6 @@ Main 3 functionalities are:
     
       takes a string representing phone number and returns wordified string.
 
-
 - words_to_numbers()
    
       takes wordified string and returns phone number.
