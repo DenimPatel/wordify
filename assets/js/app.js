@@ -125,3 +125,113 @@ function escapeHtml(str) {
   div.textContent = str;
   return div.innerHTML;
 }
+
+// example chips
+document.querySelectorAll('.example-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    const panel = chip.closest('.demo-panel');
+    const form = panel.querySelector('form');
+    const input = form.querySelector('.demo-input');
+    input.value = chip.dataset.value;
+    form.requestSubmit ? form.requestSubmit() : form.dispatchEvent(new Event('submit', { cancelable: true }));
+  });
+});
+
+// trie search animation
+(function () {
+  const svg = document.querySelector('.trie-svg');
+  if (!svg) return;
+
+  const trieQueryEl = document.getElementById('trieQuery');
+  const trieResultEl = document.getElementById('trieResult');
+
+  const edgesByStep = {
+    'root-c': 'edge-root-c', 'c-a': 'edge-c-a', 'a-r': 'edge-a-r', 'r-d1': 'edge-r-d1',
+    'a-t': 'edge-a-t', 'root-d2': 'edge-root-d2', 'd2-o': 'edge-d2-o', 'o-g': 'edge-o-g',
+  };
+
+  const searches = [
+    { word: 'CAR', nodes: ['root', 'c', 'a', 'r'], edges: ['root-c', 'c-a', 'a-r'], found: true },
+    { word: 'CARD', nodes: ['root', 'c', 'a', 'r', 'd1'], edges: ['root-c', 'c-a', 'a-r', 'r-d1'], found: true },
+    { word: 'CARS', nodes: ['root', 'c', 'a', 'r'], edges: ['root-c', 'c-a', 'a-r'], found: false },
+    { word: 'CAT', nodes: ['root', 'c', 'a', 't'], edges: ['root-c', 'c-a', 'a-t'], found: true },
+    { word: 'DOG', nodes: ['root', 'd2', 'o', 'g'], edges: ['root-d2', 'd2-o', 'o-g'], found: true },
+  ];
+
+  function resetTrie() {
+    svg.querySelectorAll('.trie-node').forEach(n => n.classList.remove('active', 'found', 'notfound'));
+    svg.querySelectorAll('.trie-edge').forEach(e => e.classList.remove('active'));
+    trieResultEl.textContent = '';
+    trieResultEl.classList.remove('found', 'notfound');
+  }
+
+  let cancelled = false;
+  let timeouts = [];
+
+  function clearTimers() {
+    timeouts.forEach(t => clearTimeout(t));
+    timeouts = [];
+  }
+
+  function runSearch(entry, onDone) {
+    resetTrie();
+    trieQueryEl.textContent = entry.word;
+    const stepDelay = 450;
+    entry.nodes.forEach((nodeId, i) => {
+      const t = setTimeout(() => {
+        if (cancelled) return;
+        if (i > 0) {
+          const edgeEl = document.getElementById(edgesByStep[entry.edges[i - 1]]);
+          if (edgeEl) edgeEl.classList.add('active');
+        }
+        const nodeEl = document.getElementById('node-' + nodeId);
+        const isLast = i === entry.nodes.length - 1;
+        if (isLast) {
+          nodeEl.classList.add(entry.found ? 'found' : 'notfound');
+          trieResultEl.textContent = entry.found ? `✓ "${entry.word}" found` : `✗ "${entry.word}" not in dictionary`;
+          trieResultEl.classList.add(entry.found ? 'found' : 'notfound');
+          timeouts.push(setTimeout(onDone, 1400));
+        } else {
+          nodeEl.classList.add('active');
+        }
+      }, i * stepDelay);
+      timeouts.push(t);
+    });
+  }
+
+  function loop(index) {
+    if (cancelled) return;
+    runSearch(searches[index % searches.length], () => loop(index + 1));
+  }
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (prefersReducedMotion) {
+    const entry = searches[0];
+    entry.nodes.forEach(nodeId => document.getElementById('node-' + nodeId).classList.add('active'));
+    entry.edges.forEach(edgeKey => document.getElementById(edgesByStep[edgeKey]).classList.add('active'));
+    document.getElementById('node-' + entry.nodes[entry.nodes.length - 1]).classList.replace('active', 'found');
+    trieQueryEl.textContent = entry.word;
+    trieResultEl.textContent = `✓ "${entry.word}" found`;
+    trieResultEl.classList.add('found');
+  } else if ('IntersectionObserver' in window) {
+    let started = false;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting && !started) {
+          started = true;
+          cancelled = false;
+          loop(0);
+        } else if (!e.isIntersecting && started) {
+          started = false;
+          cancelled = true;
+          clearTimers();
+          resetTrie();
+        }
+      });
+    }, { threshold: 0.3 });
+    io.observe(svg);
+  } else {
+    loop(0);
+  }
+})();
