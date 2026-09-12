@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wordify — Turn phone numbers into words</title>
+<meta name="description" content="Wordify finds memorable word substitutions for phone numbers using a dictionary-backed keypad search, and converts them back again.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand">Wordify<span>.</span></a>
+    <nav class="links" id="navLinks">
+      <a href="#demo">Demo</a>
+      <a href="#how">How it works</a>
+      <a href="https://github.com/DenimPatel/wordify" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://denimpatel.github.io/" target="_blank" rel="noopener">Denim Patel</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:14px;">
+      <a href="#demo" class="nav-cta">Try it</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-grid"></div>
+  <div class="wrap hero-inner">
+    <div class="status-pill"><span class="status-dot"></span>Open source · MIT licensed</div>
+    <h1>Turn your phone number into a word.</h1>
+    <p class="lede">Wordify searches every letter combination your keypad digits can spell and matches it against a dictionary of real words — so your number becomes something people actually remember.</p>
+    <div class="hero-actions">
+      <a href="#demo" class="btn btn-primary">Try the demo</a>
+      <a href="https://github.com/DenimPatel/wordify" target="_blank" rel="noopener" class="btn btn-ghost">View source</a>
+    </div>
+    <div class="hero-example">
+      <span class="num">9878724665</span>
+      <span class="arrow">→</span>
+      <span class="word">9878SCHOOL</span>
+    </div>
+  </div>
+</section>
+
+<section id="demo">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Interactive</div>
+      <h2>Try it yourself</h2>
+      <p>Runs entirely in your browser — no server, no data leaves your device. Pick a mode below.</p>
+    </div>
+
+    <div class="demo-tabs reveal">
+      <button class="demo-tab active" data-target="panel-number">Number → Words</button>
+      <button class="demo-tab" data-target="panel-words">Words → Number</button>
+    </div>
+
+    <div class="demo-panel active" id="panel-number">
+      <div class="demo-card reveal">
+        <form class="demo-form" id="numberForm">
+          <input type="text" class="demo-input" id="numberInput" placeholder="e.g. 9878724665" inputmode="numeric" value="9878724665">
+          <button type="submit" class="btn btn-primary">Wordify</button>
+        </form>
+        <div class="demo-error" id="numberError"></div>
+        <p class="demo-hint">The first two digits are kept as an area/prefix code and never wordified; the remaining digits can't include 0 or 1.</p>
+        <div class="demo-result" id="numberResult"></div>
+      </div>
+    </div>
+
+    <div class="demo-panel" id="panel-words">
+      <div class="demo-card reveal">
+        <form class="demo-form" id="wordsForm">
+          <input type="text" class="demo-input" id="wordsInput" placeholder="e.g. 9878SCHOOL" value="9878SCHOOL">
+          <button type="submit" class="btn btn-primary">Convert</button>
+        </form>
+        <div class="demo-error" id="wordsError"></div>
+        <p class="demo-hint">Letters are mapped back to their keypad digit; numbers and punctuation pass through unchanged.</p>
+        <div class="demo-result" id="wordsResult"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Under the hood</div>
+      <h2>How it works</h2>
+      <p>Three simple ideas make the whole thing possible.</p>
+    </div>
+    <div class="how-grid">
+      <div class="how-card reveal">
+        <div class="step">1</div>
+        <h3>Keypad mapping</h3>
+        <p>Every digit 2–9 maps to a set of letters, just like a phone keypad (2 → ABC, 7 → PQRS, and so on).</p>
+      </div>
+      <div class="how-card reveal">
+        <div class="step">2</div>
+        <h3>Combination search</h3>
+        <p>For every possible starting position, Wordify expands the digits after it into every letter combination they could spell.</p>
+      </div>
+      <div class="how-card reveal">
+        <div class="step">3</div>
+        <h3>Dictionary matching</h3>
+        <p>Each combination is checked against a Trie of common English words — including combinations of multiple words — to find real matches.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-box reveal">
+      <div>
+        <h2>Want to use it in your own project?</h2>
+        <p>Wordify is a small, dependency-free Python library with a permissive MIT license. Fork it, extend the dictionary, or port it to another language.</p>
+      </div>
+      <div class="contact-actions">
+        <a href="https://github.com/DenimPatel/wordify" target="_blank" rel="noopener" class="btn btn-primary">View on GitHub</a>
+        <a href="https://denimpatel.github.io/" target="_blank" rel="noopener" class="btn btn-ghost" style="background:transparent;border-color:rgba(255,255,255,0.25);color:#fff;">More projects</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© <span id="year"></span> Denim Patel. Wordify is open source under the MIT license.</span>
+    <span>Built with care.</span>
+  </div>
+</footer>
+
+<script src="assets/js/trie.js"></script>
+<script src="assets/js/wordifier.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
